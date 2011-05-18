@@ -483,12 +483,32 @@ void Matrix<T>::inverse()
         }
         else
         {
-            matrix_ = new Matrix<T>(rowSize, 2(colSize));
+            matrix_ = new Matrix<T>(rowSize, 2 * colSize);
+
+            for(int i = rowSize; i < 2 * rowSize; i++)
+            {
+                (*matrix_)[i - rowSize][i] = 1;
+            }
 
             for(int i = 0; i < rowSize; i++)
             {
-                (*matrix_)[i][i] = 1;
+                for(int j = 0; j < colSize; j++)
+                {
+                    (*matrix_)[i][j] = matrix[i][j];
+                }
             }
+
+            matrix_->rref();
+
+            for(int i = 0; i < rowSize; i++)
+            {
+                for(int j = 0; j < colSize; j++)
+                {
+                    matrix[i][j] = (*matrix_)[i][j + (rowSize - 1)];
+                }
+            }
+
+            delete matrix_;
         }
     }
 }
