@@ -526,12 +526,7 @@ void Matrix<T>::adj()
 template <typename T>
 bool Matrix<T>::isSquare()
 {
-    bool isSquare = false;
-
-    if(rowSize == colSize)
-    {
-        isSquare = true;
-    }
+    bool isSquare = (rowSize == colSize) ? 1 : 0;
 
     return isSquare;
 }
