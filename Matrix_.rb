@@ -4,10 +4,17 @@
 # This is still very rough.
 
 class Matrix
-  def initialize(rowSize, colSize, matrix)
+  def initialize(rowSize, colSize)
     @rowSize = rowSize
     @colSize = colSize
-    @matrix = matrix
+    @matrix = []
+    
+    rowSize.times do |rowSize|
+      @matrix[rowSize] = []
+
+      colSize.times do |colSize|
+        @matrix[rowSize][colSize] = 0 end
+    end
   end
 
   def [](index)
