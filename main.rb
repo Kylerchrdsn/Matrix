@@ -3,13 +3,17 @@
 
 require 'Matrix_'
 
-thing = [0, 0, 0, 0]
-
 A = Matrix.new(2, 2)
 B = Matrix.new(2, 2)
 
 A[0][0] = 2
 
-c = A + B
+C = A + B
 
-puts( c[0][0], c[0][1], c[1][0], c[1][1] )
+puts( "#{C[0][0]}, #{C[0][1]}" )
+puts( "#{C[1][0]}, #{C[1][1]}" )
+
+D = Matrix.new
+
+puts( D[0][0] )
+
