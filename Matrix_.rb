@@ -31,11 +31,23 @@ class Matrix
 
   #**************************************************
   def setDimension(rowSize, colSize)
-    if( rowSize < @rowSize )
+      
       (@rowSize - rowSize).times {
+        @matrix.pop } if(rowSize < @rowSize)
 
-      }
-    end
+      setRowSize(rowSize)
+
+      @rowSize.times { |i|
+        @matrix[i].pop(@colSize - colSize) } if(colSize < @colSize)
+
+      @rowSize.times do |i|
+        @colSize - colSize .times do |j|
+          @matrix[i][j + @colSize] = 0
+        end
+      end if (colSize > @colSize)
+
+      setColSize(colSize)
+
   end
 
   #**************************************************
@@ -49,20 +61,13 @@ class Matrix
   end
 
   #**************************************************
-  # overloaded operators ( [], []=, + )             *
+  # overloaded operators ( [], + )                  *
   #**************************************************
   def [](index)
 
     @rowSize = (index >= @rowSize) ? index + 1 : @rowSize
+    @matrix[index] = [] if (@matrix[index] == nil)
     @matrix[index]
-
-  end
-
-  #**************************************************
-  def []=(index, value)
-
-    @matrix[index] = value
-    @colSize = (index >= @colSize) ? index + 1 : @colSize
 
   end
 
